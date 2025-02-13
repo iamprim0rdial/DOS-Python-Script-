@@ -4,6 +4,7 @@ import logging
 import time
 from concurrent.futures import ThreadPoolExecutor
 from threading import Event
+import packet-analysis
 
 # logging
 logging.basicConfig(level=logging.INFO)
