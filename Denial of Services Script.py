@@ -68,8 +68,3 @@ except KeyboardInterrupt:
     stop_threads()
     logging.info("Attack stopped .")
 
-
-
-
-    sniff(prn=packet_callback, count=10)  # Capture 10 packets for analysis
-
