@@ -1,4 +1,5 @@
-# DOS PYTHON PROJECT (1770)
+# DOS PYTHON PROJECT (1770) for educational purpose only 📚🎓🏫👨🏻‍🎓🎒🏛️
+
 ---
 
 - ## `Denial of services python program`   
